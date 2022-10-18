@@ -1,0 +1,16 @@
+# project start
+
+Task(Hours)
+1)Data Cleaning (3)
+2)Understanding the background of the data as the project is related to Biology terms (2)
+3)Data Analysis (1)
+4)Going through Alpha fold jupyter notebook(Existing work) (2)
+5)Trying to create a fold (3)
+6)Control user's input (2)
+7)Input data validation (3)
+
+
+# prototype
+# alpha
+# beta
+# release
