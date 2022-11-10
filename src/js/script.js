@@ -4,6 +4,47 @@ let lSize;
 let showFlag = 0;
 let temperatureFactor = new Array();
 
+function tableFunction(){
+    var table = document.createElement('table');
+    table.setAttribute('border-collapse', 'collapse');
+    table.setAttribute('background-color','#96D4D4');
+    var row = table.insertRow(0);
+    lSize = l.length;
+    for(let i = 0 ; i< l.length;i++){
+        var cell = row.insertCell(i-1);
+        cell.setAttribute('align','center');
+        cell.appendChild(document.createTextNode(l[i-1]));
+    }
+    console.log(l)
+    document.getElementById("SW").appendChild(table);
+
+    $(".ruler[data-items]").each(function() {
+        var ruler = $(this).empty(),
+            len = Number(ruler.attr("data-items")) || -1,
+            item = $(document.createElement("li")),
+            i;
+            console.log(lSize);
+        for (i = 0; i < l.length; i++) {
+            if((i+1) % 5 == 0){
+                ruler.append(item.clone().text(i + 1));
+            }
+            else{
+                ruler.append(item.clone().text(" "));
+            }
+        }
+    });
+
+     function changeRulerSpacing(spacing) {
+        $(".ruler").
+          css("padding-right", spacing).
+          find("li").
+            css("padding-left", spacing);
+    }
+    $("#spacing").change(function() {
+        changeRulerSpacing($(this).val());
+    });
+};
+
 function pdbInput(){
     inp = document.getElementById("myText").value;
 }
