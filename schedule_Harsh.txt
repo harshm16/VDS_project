@@ -1,0 +1,9 @@
+## Tasks for me
+
+Task(Hours)
+1) Meeting with the Client to understand the project in more details. (1)
+2) Understanding the background of the data as the project involves Biological data (4)
+3) Going through Alpha fold jupyter notebook(Existing work) (4)
+4) Sketch a base visualization for a sample data (2)
+5) Render a starter visualization based on the sketch, using D3 (8)
+6) Handle the user interface for the landing page (6)
