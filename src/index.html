@@ -1,0 +1,25 @@
+<head>	
+  <script src="http://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jstat/latest/jstat.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <style></style>
+</head>
+
+<body  onload="myFunction()">
+  <h2>Distribution of Temperature Factor</h2>
+  <div id="NW"> 
+    <div id="container-01" class="mol-container">
+    </div>
+  </div>
+  <div id="SW">
+    <input type="text" id="myText1" placeholder='Enter start index'>
+    <input type="text" id="myText2" placeholder='Enter End index:' >
+    <button class = "button" onclick="myFunction()">Submit</button>
+    <br>
+    <br>
+    <ul class="ruler" data-items="0"></ul>
+    <br>
+  </div>
+</body>
