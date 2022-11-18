@@ -151,6 +151,11 @@ fill: #35024e;
 stroke: #fff;
 }
 
+.bar {
+  fill: #3C6478;
+  stroke: #9eb1cc;
+  }
+
 input[type="text"] {
     box-sizing: border-box;
     width: 25%;
