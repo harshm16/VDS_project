@@ -51,11 +51,29 @@ justify-content: center;
 #SW {
 top: 70%;
 left: 5%;
+/* bottom: 50%; */
 width: 100%;
 background: white;
 overflow-x :scroll;
 border:1ch;
+overflow: hidden;
 }
+
+#new_div {
+  position: fixed;
+  /* overflow: hidden; */
+  left:-47%; 
+  /* top:75%;  */
+
+  /* top: 55%;
+  left: -47%; */
+  /* width: 100%; */
+  /* background: white; */
+  /* overflow-x :scroll; */
+  /* overflow-y :scroll; */
+  /* border:1ch;
+  position: fixed; */
+  }
 
 #SE {
 top: 50%;

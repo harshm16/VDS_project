@@ -50,89 +50,138 @@ function pdbInput(){
     inp = document.getElementById("myText").value;
 }
 
-function ndGraph(){
-    
-    var margin = {top: 50, right: 50, bottom: 50, left: 50}
-    , width = 700 - margin.left - margin.right  
-    , height = 375 - margin.top - margin.bottom; 
 
-    var n = temperatureFactor.length;
+function ndGraph(data){
 
-    let tooltip = d3.select('body').append('div')
-  .attr('class', 'tooltip')
-  .style('opacity', 0);
-
-    var xScale = d3.scaleLinear()
-    .domain([0, n-1]) 
-    .range([0, width]);
-
-    var yScale = d3.scaleLinear()
-    .domain([0, 1]) 
-    .range([height, 0]); 
-
-    var line = d3.line()
-    .x(function(d, i) { return xScale(i); }) 
-    .y(function(d) { return yScale(d.y); }) 
-    .curve(d3.curveMonotoneX) 
-
-    var dataset = [];
-    for(let i = 0; i< temperatureFactor.length;i++){
-        dataset.push({"y":(temperatureFactor[i]/100)});
-    }
+    var margin = { top: 30, right: 30, bottom: 40, left: 250 },
+    width = 560 - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 
-    
-    //tooltip
-    let mouseover = function () {
-        tooltip.style('opacity', 1)
-        d3.select(this)
-      }
-      //tooltip
-      let mousemove = function (d) {
-        tooltip.html('<i>Amino Acid:</i> <b><span style="color:#DEDC00"> ' + l[temperatureFactor.indexOf(d.y*100)] + '</span></b> <br>\
-        <i>Temperature factor:<i> <b><span style="color:#DEDC00">' + d.y + '</span></b>')
-          .style('left', (d3.event.pageX - 50) + 'px')
-          .style('top', (d3.event.pageY - 50) + 'px')
-      }
-  
-      //tooltip
-      let mouseleave = function () {
-        tooltip.style('opacity', 0)
-        d3.select(this)
-      }
+    min = d3.min(data);
+    max = d3.max(data);
+    domain = [min,max];
 
-    // console.log(dataset);
-    var svg = d3.select("body").append("svg")
+    bin_count = 5;  
+
+
+    var x = d3
+        .scaleLinear()
+        .domain(domain)
+        .range([0, width]);
+
+    var histogram = d3
+        .histogram()
+        .domain(x.domain()) 
+        .thresholds(x.ticks(bin_count)); 
+
+
+    var bins = histogram(data);
+
+
+    var svg = d3
+    .select("body")
+    .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(xScale)); 
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+        .call(g => g.append("text")
+            .attr("x", 376)
+            .attr("y", 31)
+            .attr("text-anchor", "end")
+            .attr("fill", "black")
+            .attr("style", "font-size: 1rem")
+            .text("Temperature Factor %"));
 
-    svg.append("g")
-    .attr("class", "y axis")
-    .call(d3.axisLeft(yScale)); 
+    var y = d3
+        .scaleLinear()
+        .range([height, 0])
+        .domain([
+        0,
+        d3.max(bins, function(d) {
+            return d.length;
+        })
+        ]);
+    
+    svg.append("g").call(d3.axisLeft(y))
+        .call(g => g.append("text")
+            .attr("x", -110)
+            .attr("y", 170)
+            .attr("fill", "black")
+            .attr("style", "font-size: 1rem")
+            .attr("text-anchor", "start")
+            .text("Frequency"));
 
-    svg.append("path")
-    .datum(dataset) 
-    .attr("class", "line") 
-    .attr("d", line);  
 
-    svg.selectAll(".dot")
-    .data(dataset)
-    .enter().append("circle") 
-    .attr("class", "dot") 
-    .attr("cx", function(d, i) { return xScale(i) })
-    .attr("cy", function(d) { return yScale(d.y) })
-    .attr("r", 5)
-    .on('mouseover', mouseover)//tooltip
-    .on('mousemove', mousemove)//tooltip
-    .on('mouseleave', mouseleave);//tooltip
-}
+        
+    var tooltip = d3.select("body")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "black")
+    .style("color", "white")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+    var showTooltip = function(d) {
+        tooltip
+        .transition()
+        .duration(100)
+        .style("opacity", 1)
+        tooltip
+        .html('<i>Range:</i> <b><span style="color:#DEDC00"> ' + d.x0 + " - " + d.x1 + "%" + '</span></b> <br>\
+        <i>Frequency:<i> <b><span style="color:#DEDC00">' + d.length + '</span></b>')
+
+
+
+        .style('left', (d3.event.pageX - 50) + 'px')
+        .style('top', (d3.event.pageY - 50) + 'px')
+    }
+    var moveTooltip = function(d) {
+        tooltip
+        .style('left', (d3.event.pageX - 50) + 'px')
+        .style('top', (d3.event.pageY - 50) + 'px')
+    }
+
+
+    var hideTooltip = function(d) {
+        tooltip
+        .transition()
+        .duration(100)
+        .style("opacity", 0);
+
+    
+    }
+
+    var color = "#6C0BA9"
+        
+    svg.selectAll("rect")
+    .data(bins)
+    .enter()
+    .append("rect")
+    .attr("x", 1)
+    .attr("transform", function(d) {
+        return "translate(" + x(d.x0) + "," + y(d.length) + ")";
+    })
+    .attr("width", function(d) {
+        return x(d.x1) - x(d.x0) - 1;
+    })
+    .attr("height", function(d) {
+        return height - y(d.length);
+    })
+    .style("fill", color)
+    // Show tooltip on hover
+    .on("mouseover", showTooltip )
+    .on("mousemove", moveTooltip )
+    .on("mouseleave", hideTooltip );
+
+    }
+    
 
 
 function myFunction(x, y) {
@@ -185,18 +234,12 @@ function myFunction(x, y) {
 
     
     if(showFlag == 0){
-        // ndGraph();
+
+        ndGraph(temperatureFactor);
         tableFunction();
+        
         barChart(0)
-        // document.addEventListener('click', function (event) {
-        //     if (!event.target.matches('.bar')) return;
-            
-        //     console.log(event.target);
-        // }, false);
-
-
-
-
+ 
         showFlag = 1;
     }
     
@@ -222,8 +265,8 @@ function barChart(instance){
         tooltip.html('<i>Index:</i> <b><span style="color:#DEDC00"> ' + i + '</span></b> <br>\
         <i>Amino Acid:</i> <b><span style="color:#DEDC00"> ' + l[i] + '</span></b>  <br>\
         <i>Temperature factor:<i> <b><span style="color:#DEDC00">' + temperatureFactor[i] + '</span></b>')
-        .style('left', (d3.event.pageX - 50) + 'px')
-        .style('top', (d3.event.pageY - 50) + 'px')
+        .style('left', (d3.event.pageX + 700) + 'px')
+        .style('top', (d3.event.pageY - 20) + 'px')
     }
 
     //tooltip
@@ -274,7 +317,7 @@ function barChart(instance){
     if (instance === 0){
         var margin = {top: 50, right: 50, bottom: 50, left: 5}
         , width = 10000 - margin.left - margin.right  
-        , height = 275 - margin.top - margin.bottom; 
+        , height = 175 - margin.top - margin.bottom; 
 
         var n = l.length;
 
