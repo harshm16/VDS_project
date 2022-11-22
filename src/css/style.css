@@ -92,7 +92,7 @@ border:1ch;
   top: 47.5%;
   left: 35%;
   width: 100%;
-  height: 10%;
+  height: 15%;
   overflow-x: scroll;
   /* overflow-x: hidden; */
 }
@@ -120,7 +120,7 @@ border:1ch;
 }
 
 #SE {
-top: 60%;
+top: 70%;
 left: 47%;
 }
 

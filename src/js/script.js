@@ -329,8 +329,8 @@ function barChart(instance){
         tooltip.html('<i>Index:</i> <b><span style="color:#DEDC00"> ' + i + '</span></b> <br>\
         <i>Amino Acid:</i> <b><span style="color:#DEDC00"> ' + l[i] + '</span></b>  <br>\
         <i>Temperature factor:<i> <b><span style="color:#DEDC00">' + temperatureFactor[i] + '</span></b>')
-        .style('left', (d3.event.pageX - 50) + 'px')
-        .style('top', (d3.event.pageY - 50) + 'px')
+        .style('left', (d3.event.pageX - 700) + 'px')
+        .style('top', (d3.event.pageY - 410) + 'px')
     }
 
     //tooltip
