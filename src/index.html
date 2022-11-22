@@ -1,37 +1,39 @@
 <head>	
   <script src="http://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
-  <script src="js/script.js"></script>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <svg id ="my" width="800" height="710"></svg>
+  <script  src="js/script.js" ></script>
+  <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
   <script src="https://cdn.jsdelivr.net/jstat/latest/jstat.min.js"></script>
+  <script src="js/arc.js" ></script>
+  <script src="js/d3-scale-radial.js"></script>
+  <script src="js/rad.js"></script>
+  <script src="js/temp.js"></script>
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    h2{
-      position: relative;
-      left: 135px;
-    }</style>
+<script>document.body.style.zoom="90%"</script>
 </head>
-
-<body  onload="myFunction()">
-  <h2>Distribution of Temperature Factor</h2>
-  <div id="NW"> 
+<body onload="myFunction();myKo();myKo1()" >
+  <div id="NE"> 
+    <div id="container-03" class="mol-container">  
+    </div>
+    <button class = "button" onclick="myKo1('line')">Line</button>
+    <button class = "button" onclick="sphere('Sphere')">Sphere</button>
+    <button class = "button" onclick="cartoon('Cartoon')">Cartoon</button>
+    <button class = "button" onclick="stick('Stick')">Stick</button>
+    <button class = "button" onclick="cross('cross')">cross</button>
+    <input type="text" id="myText1" placeholder='Enter start index'>
+    <input type="text" id="myText2" placeholder='Enter End index:' >
+  </div>
+  <div id="middle">
     <div id="container-01" class="mol-container">
     </div>
   </div>
-  <div id="SW">
-    <input type="text" id="myText1" placeholder='Enter start index'>
-    <input type="text" id="myText2" placeholder='Enter End index:' >
-    <button class = "button" onclick="myFunction()">Submit</button>
+  <div id="left">
+    <div id="container-02" class="mol-container">
+    </div>
     <button class = "button" onclick="myreset()">Reset</button>
-
-    
-    <br>
-    <br>
-    <ul class="ruler" data-items="0"></ul>
-    <br>
   </div>
-
-  <div id="new_div"></div>
-    
-
-  </div>
+    <div id="SE">
+     </div>
+    <div id="new_div">
+    </div>   
 </body>
