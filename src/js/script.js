@@ -330,7 +330,7 @@ function barChart(instance){
         <i>Amino Acid:</i> <b><span style="color:#DEDC00"> ' + l[i] + '</span></b>  <br>\
         <i>Temperature factor:<i> <b><span style="color:#DEDC00">' + temperatureFactor[i] + '</span></b>')
         .style('left', (d3.event.pageX - 700) + 'px')
-        .style('top', (d3.event.pageY - 410) + 'px')
+        .style('top', (d3.event.pageY - 360) + 'px')
     }
 
     //tooltip
