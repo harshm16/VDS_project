@@ -1,5 +1,14 @@
 <head>	
   <script src="http://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+  <h1 class = "h1">Visualizing Amino Acid Sequences</h1>
+
+  <h3 style="float: left" class = "h3">Class prediction</h3>
+
+
+  <h2 class = "h2">3D Molecular View</h2>
+
+  <!-- <h2 class = "h2">Radial Chart for Class prediction</h2> -->
+  
   <svg id ="my" width="800" height="710"></svg>
   <script  src="js/script.js" ></script>
   <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
@@ -12,6 +21,7 @@
 <script>document.body.style.zoom="90%"</script>
 </head>
 <body onload="myFunction();myKo();myKo1()" >
+  
   <div id="NE"> 
     <div id="container-03" class="mol-container">  
     </div>
@@ -32,6 +42,10 @@
     </div>
     <button class = "button" onclick="myreset();myFunction();myKo();myKo1()">Reset</button>
   </div>
+  <!-- <div id="legend_3d">
+    
+  </div> -->
+  
     <div id="SE">
      </div>
     <div id="new_div">

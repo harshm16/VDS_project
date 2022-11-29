@@ -35,8 +35,8 @@ let mouseover = function () {
         }
         tooltip.html('<i>Seq:</i> <b><span style="color:#DEDC00"> ' + se[co++] +'</span></b> <br><i>k1:</i> <b><span style="color:#DEDC00"> ' + d[0] + '</span></b> <br><i>k2:</i> <b><span style="color:#DEDC00"> ' + d[1] + '</span></b> <br><i>k3:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[2] + '</span></b>  <br><i>k3:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[3] + '</span></b>  <br><i>k4:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[4] + '</span></b>  <br><i>k5:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[5] + '</span></b>  <br><i>W:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[6] + '</span></b>  <br><i>pI:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[7] + '</span></b> \
        ')
-          .style('left', (d3.event.pageX - 50) + 'px')
-          .style('top', (d3.event.pageY - 50) + 'px')
+          .style('left', (d3.event.pageX + 70) + 'px')
+          .style('top', (d3.event.pageY + 50) + 'px')
       }
   
       //tooltip
@@ -72,6 +72,8 @@ var y = d3.scaleRadial()
 var z = d3.scaleOrdinal()
    .range(["#f7fcf0","#e0f3db","#ccebc5","#a8ddb5","#7bccc4","#4eb3d3","#2b8cbe","#0868ac","#084081"]);
 
+var rad_z = d3.scaleOrdinal()
+.range ([ "#a37622", "#d46010", "#7670b2", "#e22b8a", "#69a625", "#e2ab18", "#2e9e77", "#666666","#eaeeec"]);
 
 d3.csv("data.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
@@ -82,13 +84,13 @@ d3.csv("data.csv", function(d, i, columns) {
 
   x.domain(data.map(function(d) { return d.State; }));
   y.domain([0, d3.max(data, function(d) { return d.total; })]);
-  z.domain(data.columns.slice(1));
+  rad_z.domain(data.columns.slice(1));
 
   g.append("g")
     .selectAll("g")
     .data(d3.stack().keys(data.columns.slice(1))(data))
     .enter().append("g")
-      .attr("fill", function(d) { return z(d.key); })
+      .attr("fill", function(d) { return rad_z(d.key); })
     .selectAll("path")
     .data(function(d) { return d; })
     .enter().append("path")
@@ -145,6 +147,8 @@ d3.csv("data.csv", function(d, i, columns) {
       .attr("dy", "-1em")
       .text("Variability scores");
 
+
+
   var legend = g.append("g")
     .selectAll("g")
     .data(data.columns.slice(1).reverse())
@@ -154,23 +158,27 @@ d3.csv("data.csv", function(d, i, columns) {
   legend.append("rect")
       .attr("width", 18)
       .attr("height", 18)
-      .attr("fill", z);
+      .attr("fill", rad_z);
 
   legend.append("text")
-      .attr("x",20)
-      .attr("y", 9)
-      .attr("dy", "0.35em")
-      .text(function(d) { return leg[le++]; });
+  .attr("x",20)
+  .attr("y", 9)
+  .attr("dy", "0.35em")
+  .text(function(d) { return leg[le++]; });
 
-  legend.append("rect")
-      .attr("x", 400)
+ 
+    legend.append("rect")
+      .attr("x", 450)
+      .attr("y", 5)
       .attr("width", 18)
       .attr("height", 18)
       .attr("fill", z);
 
-  legend.append("text")
-      .attr("x", 350)
+      legend.append("text")
+      .attr("x", 400)
       .attr("y", 5)
       .attr("dy", "0.35em")
       .text(function(d) { return leg1[le1++]; });
+
+
 });
