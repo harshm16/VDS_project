@@ -119,18 +119,9 @@ function ndGraph(data){
             .attr("style", "font-size: 1rem")
             .attr("text-anchor", "start")
             .text("Frequency"));
-    
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x))
-        .call(g => g.append("text")
-            .attr("x", 350)
-            .attr("y", -210)
-            .attr("text-anchor", "end")
-            .attr("fill", "black")
-            .attr("style", "font-size: 1.2rem")
-            .text("Distribution of Temperature factor"));
 
+
+        
     var tooltip = d3.select("body")
     .append("div")
     .style("opacity", 0)
@@ -151,13 +142,13 @@ function ndGraph(data){
 
 
 
-        .style('left', (d3.event.pageX + 15) + 'px')
-        .style('top', (d3.event.pageY - 50) + 'px')
+        .style('left', (d3.event.pageX + 100) + 'px')
+        .style('top', (d3.event.pageY -0) + 'px')
     }
     var moveTooltip = function(d) {
         tooltip
-        .style('left', (d3.event.pageX + 15) + 'px')
-        .style('top', (d3.event.pageY - 50) + 'px')
+        .style('left', (d3.event.pageX + 100) + 'px')
+        .style('top', (d3.event.pageY - 0) + 'px')
     }
 
 
@@ -338,8 +329,10 @@ function barChart(instance){
         tooltip.html('<i>Index:</i> <b><span style="color:#DEDC00"> ' + i + '</span></b> <br>\
         <i>Amino Acid:</i> <b><span style="color:#DEDC00"> ' + l[i] + '</span></b>  <br>\
         <i>Temperature factor:<i> <b><span style="color:#DEDC00">' + temperatureFactor[i] + '</span></b>')
-        .style('left', (d3.event.pageX - 700) + 'px')
-        .style('top', (d3.event.pageY - 555) + 'px')
+        // .style('left', (event.ClientX - 700) + 'px')
+        // .style('top', (event.ClientY - 555) + 'px')
+        .style('left', (d3.mouse(this)[0] + 20) + 'px')
+        .style('top', (d3.mouse(this)[1] + 40 ) + 'px');
     }
 
     //tooltip

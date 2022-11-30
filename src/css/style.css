@@ -18,7 +18,12 @@ padding: 0;
 } */
 
 
-
+ img{
+  top:  35%;
+  padding-top: 50%;
+  width: 70%;
+  height: 150px;
+} 
 body:before { 
 	content:"";
 	position:fixed;
@@ -53,6 +58,13 @@ height: 300px;
   top: 25%;
   left: 35%;
   width: 25%;
+  height: 300px;
+  background: black;
+}
+#leftMost{
+  top: 25%;
+  left: 35%;
+  width: 5%;
   height: 300px;
   background: black;
 }
@@ -116,20 +128,29 @@ h2 {
   display: block;
   text-align: center;
   font-size: 2em;
-  /* margin-top: -2%; */
+  /* margin-top: 2%; */
   /* margin-bottom: 2%; */
   margin-left: 35%;
   margin-right: 0;
   font-weight: bold;
 }
 
-
+h3 { 
+  display: block;
+  text-align: center;
+  font-size: 2em;
+  margin-top: -3%;
+  /* margin-bottom: 2%; */
+  margin-left: 4%;
+  margin-right: 0;
+  font-weight: bold;
+}
 
 .threed1 { 
   display: block;
   /* text-align: center; */
   font-size: 1.5em;
-  margin-top: -1.5%;
+  margin-top: -2.5%;
   /* margin-bottom: 2%; */
   /* width: 100%; */
   /* margin-left: 1%; */
@@ -146,27 +167,12 @@ h2 {
   margin-top: -1.5%;
   margin-bottom: 3%;
   /* width: 100%; */
-  margin-left: 10%;
+  margin-left: 6.5%;
   margin-right: 0;
   /* background-color: #7F8003; */
   color: black;
   font-weight: bold;
 }
-
-
-
-
-h3 { 
-  display: block;
-  text-align: center;
-  font-size: 2em;
-  margin-top: -1%;
-  margin-bottom: 0%;
-  margin-left: 2%;
-  margin-right: 0;
-  font-weight: bold;
-}
-
 
 #new_div {
   top: 60%;
@@ -257,6 +263,10 @@ top: -.64em;
 right: 1em;
 }
 
+#my{
+  margin-top: 0%;
+  margin-left: 3.5%;
+}
 /* svg{
     padding-left: 100px;
     padding-top: 0%;

@@ -33,6 +33,8 @@ function myKo() {
         viewer1.render();
         
     });
+   
+
 };
 
 function getdatafromfile(filename)  {
@@ -204,11 +206,22 @@ d3.json("jeans.json", function (error, gr) {
 });
 
 document.write("<br>");
+var h1 = document.createElement('h6');
+var h1 = document.createElement('h6');
+var str1 = "`  ";
+for(let i = 0 ; i < 2 ; i++){
+  str1 += " `";
+}
+str1 += "`";
+h1.textContent = " ````"+str1;
+h1.setAttribute('class', 'note');
+document.body.appendChild(h1);
+h1.style.wordSpacing = "27px";
 for(let i = seq.length - 1; i > -1; i--){
         var h1 = document.createElement('h6');
         h1.textContent =seq[i] + " ";
         h1.setAttribute('class', 'note');
         document.body.appendChild(h1);
-        h1.style.wordSpacing = "25px";
+        h1.style.wordSpacing = "27.5px";
         
 }
