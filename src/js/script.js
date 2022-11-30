@@ -142,12 +142,12 @@ function ndGraph(data){
 
 
 
-        .style('left', (d3.event.pageX - 50) + 'px')
+        .style('left', (d3.event.pageX + 15) + 'px')
         .style('top', (d3.event.pageY - 50) + 'px')
     }
     var moveTooltip = function(d) {
         tooltip
-        .style('left', (d3.event.pageX - 50) + 'px')
+        .style('left', (d3.event.pageX + 15) + 'px')
         .style('top', (d3.event.pageY - 50) + 'px')
     }
 
@@ -223,7 +223,7 @@ function myFunction(x, y) {
         temperatureFactor[count] = atom.b;
         count += 1;
         // console.log(atom.resi);
-        return li.includes(atom.resi) ? 'white' : 'green';
+        return li.includes(atom.resi) ? 'red' : 'green';
     };
     $3Dmol.download("PDB-samples/sample.pdb",viewer,{},function(){
     // viewer.setStyle({chain: 'A', within:{distance: 10, sel:{chain: 'B'}}}, {sphere:{}});
@@ -330,7 +330,7 @@ function barChart(instance){
         <i>Amino Acid:</i> <b><span style="color:#DEDC00"> ' + l[i] + '</span></b>  <br>\
         <i>Temperature factor:<i> <b><span style="color:#DEDC00">' + temperatureFactor[i] + '</span></b>')
         .style('left', (d3.event.pageX - 700) + 'px')
-        .style('top', (d3.event.pageY - 410) + 'px')
+        .style('top', (d3.event.pageY - 555) + 'px')
     }
 
     //tooltip
@@ -360,17 +360,27 @@ function barChart(instance){
                 text2.value= i;
             }
         
-     
-
 
             d3.select(this)
-            .attr("fill", "#111111")
-            .attr("fill-opacity", 0.2)
+            .attr("fill", "red")
+            .attr("fill-opacity", 0.5)
             .attr('stroke', '#880808')
             .attr('stroke-width', 5)
         }
         
         if (count === 2){
+
+            for (let j = arr_onclick[1]; j < arr_onclick[2]; j++) {
+
+      
+                d3.select("#bar" + j)
+                .attr("fill", "red")
+                .attr("fill-opacity", 0.5)
+                .attr('stroke', '#880808')
+                .attr('stroke-width', 5);
+
+              }
+
             myFunction(arr_onclick[1], arr_onclick[2]);
 
         }
@@ -451,6 +461,7 @@ function barChart(instance){
         .attr("fill-opacity", 0)
         .attr('stroke', '#02412A')
         .attr('stroke-width', 3)
+        .attr("id",function(d,i) { return "bar" + i })
 
 
         // .enter().append("circle") 
@@ -495,7 +506,7 @@ function myreset() {
         temperatureFactor[count] = atom.b;
         count += 1;
         // console.log(atom.resi);
-        return li.includes(atom.resi) ? 'white' : 'green';
+        return li.includes(atom.resi) ? 'red' : 'green';
     };
     $3Dmol.download("PDB-samples/sample.pdb",viewer,{},function(){
     // viewer.setStyle({chain: 'A', within:{distance: 10, sel:{chain: 'B'}}}, {sphere:{}});

@@ -160,8 +160,8 @@ d3.json("jeans.json", function (error, gr) {
       });
     })
     .on('mouseout', function (d) {
-      link.style('stroke', null);
-      node.style('fill', null);
+      link.style('stroke', 'null');
+      node.style('fill', 'null');
     });
 
   var node = svg.append('g')
@@ -173,19 +173,21 @@ d3.json("jeans.json", function (error, gr) {
     .attr('cy', function (d) { return d.y; })
     .attr('r', function (d) { return nodeRadius(d.chapters.length); })
     .on('mouseover', function (d) {
-      node.style('fill', null);
+      node.style('fill', 'black');
       d3.select(this).style('fill', 'black');
       var nodesToHighlight = graph.links.map(function (e) { return e.source === d ? e.target : e.target === d ? e.source : 0})
         .filter(function (d) { return d; });
       node.filter(function (d) { return nodesToHighlight.indexOf(d) >= 0; })
-        .style('fill', '#555');
+        .style('fill', 'red').attr('r', 6);
       link.style('stroke', function (link_d) {
         return link_d.source === d | link_d.target === d ? '#d62333' : null;
+      }).attr('stroke-width', function (link_d) {
+        return link_d.source === d | link_d.target === d ? 6 : 1;
       });
     })
     .on('mouseout', function (d) {
-      node.style('fill', 'red');
-      link.style('stroke', null);
+      node.style('fill', 'blue').attr('r', function (d) { return nodeRadius(d.chapters.length); });
+      link.style('stroke', null) .attr('stroke-width', function (d) { return linkWidth(d.chapters.length); });
     });
 
   node.append('title').text(function (d) { return d.name; });
