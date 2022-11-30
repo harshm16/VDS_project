@@ -17,6 +17,8 @@ margin: 0;
 padding: 0;
 } */
 
+
+
 body:before { 
 	content:"";
 	position:fixed;
@@ -40,7 +42,7 @@ height: 300px;
 }
 
 #middle{
-  top:0;
+  top:  25%;
   left: 55%;
   width: 25%;
   height: 300px;
@@ -48,15 +50,28 @@ height: 300px;
 }
 
 #left{
-  top:0;
+  top: 25%;
   left: 35%;
   width: 25%;
   height: 300px;
   background: black;
 }
 
+/* #legend_3d{
+  top: 25%;
+  left: 10%;
+  width: 25%;
+  height: 300px;
+   background: b; 
+} */
+
+/* #my{
+  background: black;
+  width: %; 
+} */
+
 #NE {
-top: 0;
+top: 25%;
 left: 75%;
 width: 25%;
 height: 300px;
@@ -86,15 +101,48 @@ height: 1000px;
 border:1ch;
 }
 
+h1 { 
+  display: block;
+  text-align: center;
+  font-size: 5em;
+  /* margin-top: 2%; */
+  /* margin-bottom: 2%; */
+  margin-left: 2%;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+h2 { 
+  display: block;
+  text-align: center;
+  font-size: 2em;
+  /* margin-top: 2%; */
+  /* margin-bottom: 2%; */
+  margin-left: 35%;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+h3 { 
+  display: block;
+  text-align: center;
+  font-size: 2em;
+  margin-top: -3%;
+  /* margin-bottom: 2%; */
+  margin-left: 4%;
+  margin-right: 0;
+  font-weight: bold;
+}
 
 
 #new_div {
-  top: 47.5%;
+  top: 60%;
+  /* bottom: 20%; */
   left: 35%;
   width: 100%;
-  height: 15%;
+  height: 12%;
   overflow-x: scroll;
-  /* overflow-x: hidden; */
+  overflow-y: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -120,8 +168,9 @@ border:1ch;
 }
 
 #SE {
-top: 70%;
+top: 75%;
 left: 47%;
+
 }
 
 #innerDIV {
@@ -188,11 +237,11 @@ right: 1em;
 
 
 
-h2{
+/* h2{
 padding-left: 1000px;
 padding-top: 5px;
 padding-bottom: 0%;
-}
+} */
 
 div.tooltip {
 position: absolute;
@@ -219,8 +268,8 @@ stroke: #fff;
 }
 
 .bar {
-  fill: #3C6478;
-  stroke: #9eb1cc;
+  /* fill: red; */
+  stroke: green;
   }
 
 input[type="text"] {
