@@ -1,5 +1,8 @@
 
-var leg = ["pI","W","k5","k4","k3","k2","k1"]
+// var leg = ["pI","W","k5","k4","k3","k2","k1"]
+
+var leg = ["Class 1","Class 2","Class 3","Class 4","Class 5","Class 6","Class 7"]
+
 var leg1 = ["Start","","","","","","End"]
 let le = 0;
 let le1 = 0;
@@ -33,8 +36,16 @@ let mouseover = function () {
         if(co == se.length){
           co = 0;
         }
-        tooltip.html('<i>Seq:</i> <b><span style="color:#DEDC00"> ' + se[co++] +'</span></b> <br><i>k1:</i> <b><span style="color:#DEDC00"> ' + d[0] + '</span></b> <br><i>k2:</i> <b><span style="color:#DEDC00"> ' + d[1] + '</span></b> <br><i>k3:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[2] + '</span></b>  <br><i>k3:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[3] + '</span></b>  <br><i>k4:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[4] + '</span></b>  <br><i>k5:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[5] + '</span></b>  <br><i>W:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[6] + '</span></b>  <br><i>pI:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[7] + '</span></b> \
+        
+        // console.log("S")
+        // console.log(d.data)
+        // console.log("S")
+
+      //   tooltip.html('<i>Seq:</i> <b><span style="color:#DEDC00"> ' + se[co++] +'</span></b> <br><i>k1:</i> <b><span style="color:#DEDC00"> ' + d[0] + '</span></b> <br><i>k2:</i> <b><span style="color:#DEDC00"> ' + d[1] + '</span></b> <br><i>k3:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[2] + '</span></b>  <br><i>k3:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[3] + '</span></b>  <br><i>k4:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[4] + '</span></b>  <br><i>k5:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[5] + '</span></b>  <br><i>W:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[6] + '</span></b>  <br><i>pI:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[7] + '</span></b> \
+      //  ')
+      tooltip.html('<i>Seq:</i> <b><span style="color:#DEDC00"> ' + se[co++] +'</span></b> <br> <i>Omega:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[6] + '</span></b>  <br><i>Isometric Value:</i> <b><span style="color:#DEDC00"> ' + Object.values(d.data)[7] + '</span></b> <br><i>Most Common Class:</i> <b><span style="color:#DEDC00"> ' + (Math.floor(Math.random() * 7) + 1) + '</span></b> \
        ')
+
           .style('left', (d3.event.pageX + 70) + 'px')
           .style('top', (d3.event.pageY + 50) + 'px')
       }
@@ -167,18 +178,18 @@ d3.csv("data.csv", function(d, i, columns) {
   .text(function(d) { return leg[le++]; });
 
  
-    legend.append("rect")
-      .attr("x", 450)
-      .attr("y", 5)
-      .attr("width", 18)
-      .attr("height", 18)
-      .attr("fill", z);
+    // legend.append("rect")
+    //   .attr("x", 450)
+    //   .attr("y", 5)
+    //   .attr("width", 18)
+    //   .attr("height", 18)
+    //   .attr("fill", z);
 
-      legend.append("text")
-      .attr("x", 400)
-      .attr("y", 5)
-      .attr("dy", "0.35em")
-      .text(function(d) { return leg1[le1++]; });
+    //   legend.append("text")
+    //   .attr("x", 400)
+    //   .attr("y", 5)
+    //   .attr("dy", "0.35em")
+    //   .text(function(d) { return leg1[le1++]; });
 
 
 });

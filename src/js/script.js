@@ -119,9 +119,18 @@ function ndGraph(data){
             .attr("style", "font-size: 1rem")
             .attr("text-anchor", "start")
             .text("Frequency"));
+    
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+        .call(g => g.append("text")
+            .attr("x", 350)
+            .attr("y", -210)
+            .attr("text-anchor", "end")
+            .attr("fill", "black")
+            .attr("style", "font-size: 1.2rem")
+            .text("Distribution of Temperature factor"));
 
-
-        
     var tooltip = d3.select("body")
     .append("div")
     .style("opacity", 0)
